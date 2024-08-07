@@ -3696,6 +3696,7 @@ ImVec2 PlotToPixels(double x, double y, ImAxis x_idx, ImAxis y_idx) {
     //    plot coordinate (for a skewed X coordinate), can be done. Or, find a way to overload the PlotToPixels
     //    functions so that the transform can be applied given the correct function call.
     // 2) Overload the main PlotToPixels API ()
+    // 3) Create some sort of struct that can be passed as TransformData?
     return ImVec2( x_axis.PlotToPixels(x), y_axis.PlotToPixels(y) );
 }
 
