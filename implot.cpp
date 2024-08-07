@@ -3690,6 +3690,12 @@ ImVec2 PlotToPixels(double x, double y, ImAxis x_idx, ImAxis y_idx) {
     ImPlotPlot& plot = *gp.CurrentPlot;
     ImPlotAxis& x_axis = x_idx == IMPLOT_AUTO ? plot.Axes[plot.CurrentX] : plot.Axes[x_idx];
     ImPlotAxis& y_axis = y_idx == IMPLOT_AUTO ? plot.Axes[plot.CurrentY] : plot.Axes[y_idx];
+    // Ideas for skewed axes: 
+    // 1) make the PlotToPixels and PixelsToPlot APIs for ImPlotAxis take both the x and y data
+    //    so that things like an affine transform, which requires knowing the Y 
+    //    plot coordinate (for a skewed X coordinate), can be done. Or, find a way to overload the PlotToPixels
+    //    functions so that the transform can be applied given the correct function call.
+    // 2) Overload the main PlotToPixels API ()
     return ImVec2( x_axis.PlotToPixels(x), y_axis.PlotToPixels(y) );
 }
 
