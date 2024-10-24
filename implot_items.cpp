@@ -1488,7 +1488,7 @@ void RenderPrimitives2(const _Getter1& getter1, const _Getter2& getter2, const _
 // [SECTION] Markers
 //-----------------------------------------------------------------------------
 
-template <class _Getter>
+template <class _Getter, class _GetterCol>
 struct RendererMarkersFill : RendererBase {
     RendererMarkersFill(const _Getter& getter, const _GetterCol& getterCol,  const ImVec2* marker, int count, float size) :
         RendererBase(getter.Count, (count-2)*3, count),
