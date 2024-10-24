@@ -2281,14 +2281,14 @@ void PlotInfLines(const char* label_id, const T* values, int count, ImPlotInfLin
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
             GetterColor<IndexerIdx<ImU32>> get_col = GenerateColorGetter(s, ImPlotCol_Line, col_line, count);
             if (s.RenderLine)
-                RenderPrimitives2<RendererLineSegments2>(get_min, get_max, get_col, s.LineWeight);
+                RenderPrimitives2<RendererLineSegments2>(getter_min, getter_max, get_col, s.LineWeight);
             EndItem();
         }
     }
     else {
-        GetterXY<IndexerIdx<T>,IndexerConst> get_min(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Min),count);
-        GetterXY<IndexerIdx<T>,IndexerConst> get_max(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Max),count);
-        if (BeginItemEx(label_id, FitterX<GetterXY<IndexerIdx<T>,IndexerConst>>(get_min), flags, ImPlotCol_Line)) {
+        GetterXY<IndexerIdx<T>,IndexerConst> getter_min(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Min),count);
+        GetterXY<IndexerIdx<T>,IndexerConst> getter_max(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Max),count);
+        if (BeginItemEx(label_id, FitterX<GetterXY<IndexerIdx<T>,IndexerConst>>(getter_min), flags, ImPlotCol_Line)) {
             if (count <= 0) {
                 EndItem();
                 return;
@@ -2297,7 +2297,7 @@ void PlotInfLines(const char* label_id, const T* values, int count, ImPlotInfLin
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
             GetterColor<IndexerIdx<ImU32>> get_col = GenerateColorGetter(s, ImPlotCol_Line, col_line, count);
             if (s.RenderLine)
-                RenderPrimitives2<RendererLineSegments2>(get_min, get_max, get_col, s.LineWeight);
+                RenderPrimitives2<RendererLineSegments2>(getter_min, getter_max, get_col, s.LineWeight);
             EndItem();
         }
     }
