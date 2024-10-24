@@ -1052,7 +1052,7 @@ struct RendererBarsFillV : RendererBase {
     mutable ImVec2 UV;
 };
 
-template <class _Getter1, class _Getter2>
+template <class _Getter1, class _Getter2, class _GetterCol>
 struct RendererBarsFillH : RendererBase {
     RendererBarsFillH(const _Getter1& getter1, const _Getter2& getter2, const _GetterCol& getterCol, double height) :
         RendererBase(ImMin(getter1.Count, getter1.Count), 6, 4),
@@ -1133,7 +1133,7 @@ struct RendererBarsLineV : RendererBase {
     mutable ImVec2 UV;
 };
 
-template <class _Getter1, class _Getter2, class _GetterCo>
+template <class _Getter1, class _Getter2, class _GetterCol>
 struct RendererBarsLineH : RendererBase {
     RendererBarsLineH(const _Getter1& getter1, const _Getter2& getter2, const _GetterCol& getterCol, double height, float weight) :
         RendererBase(ImMin(getter1.Count, getter1.Count), 24, 8),
