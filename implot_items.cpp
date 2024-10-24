@@ -1644,8 +1644,6 @@ void RenderMarkers(const _Getter& getter, ImPlotMarker marker, float size, bool 
             case ImPlotMarker_Down    : RenderPrimitives1<RendererMarkersFill>(getter,get_col_fill,MARKER_FILL_DOWN,   3,size); break;
             case ImPlotMarker_Left    : RenderPrimitives1<RendererMarkersFill>(getter,get_col_fill,MARKER_FILL_LEFT,   3,size); break;
             case ImPlotMarker_Right   : RenderPrimitives1<RendererMarkersFill>(getter,get_col_fill,MARKER_FILL_RIGHT,  3,size); break;
-         }
-     }
         }
     }
     if (rend_line) {
