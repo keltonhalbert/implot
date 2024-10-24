@@ -878,7 +878,7 @@ struct RendererBase {
     const int VtxConsumed;
 };
 
-template <class _Getter, class _GetterCol>>
+template <class _Getter, class _GetterCol>
 struct RendererLineStrip : RendererBase {
     RendererLineStrip(const _Getter& getter, const _GetterCol& getterCol, float weight) :
         RendererBase(getter.Count - 1, 6, 4),
@@ -955,7 +955,7 @@ struct RendererLineStripSkip : RendererBase {
     mutable ImVec2 UV1;
 };
 
-template <class _Getter, class _GetterCol>>
+template <class _Getter, class _GetterCol>
 struct RendererLineSegments1 : RendererBase {
     RendererLineSegments1(const _Getter& getter, const _GetterCol& getterCol, float weight) :
         RendererBase(getter.Count / 2, 6, 4),
