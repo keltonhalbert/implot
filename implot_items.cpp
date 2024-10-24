@@ -1175,7 +1175,7 @@ struct RendererBarsLineH : RendererBase {
 };
 
 
-template <class _Getter, , class _GetterCol>
+template <class _Getter, class _GetterCol>
 struct RendererStairsPre : RendererBase {
     RendererStairsPre(const _Getter& getter, const _GetterCol& getterCol, float weight) :
         RendererBase(getter.Count - 1, 12, 8),
