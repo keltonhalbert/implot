@@ -2214,8 +2214,8 @@ void PlotStemsEx(const char* label_id, const _GetterM& getter_mark, const _Gette
         // render stems
         if (s.RenderLine) {
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
-            GetterColor<IndexerIdx<ImU32>> get_col_line = GenerateColorGetter(s, ImPlotCol_Line, col_line, get_mark.Count);
-            RenderPrimitives2<RendererLineSegments2>(get_mark, get_base, get_col_line, s.LineWeight);
+            GetterColor<IndexerIdx<ImU32>> get_col_line = GenerateColorGetter(s, ImPlotCol_Line, col_line, getter_mark.Count);
+            RenderPrimitives2<RendererLineSegments2>(getter_mark, get_base, get_col_line, s.LineWeight);
         }
         // render markers
         if (s.Marker != ImPlotMarker_None) {
@@ -2232,28 +2232,28 @@ void PlotStemsEx(const char* label_id, const _GetterM& getter_mark, const _Gette
 template <typename T>
 void PlotStems(const char* label_id, const T* values, int count, double ref, double scale, double start, ImPlotStemsFlags flags, int offset, int stride) {
     if (ImHasFlag(flags, ImPlotStemsFlags_Horizontal)) {
-        GetterXY<IndexerIdx<T>,IndexerLin> get_mark(IndexerIdx<T>(values,count,offset,stride),IndexerLin(scale,start),count);
+        GetterXY<IndexerIdx<T>,IndexerLin> getter_mark(IndexerIdx<T>(values,count,offset,stride),IndexerLin(scale,start),count);
         GetterXY<IndexerConst,IndexerLin>  get_base(IndexerConst(ref),IndexerLin(scale,start),count);
-        PlotStemsEx(label_id, get_mark, get_base, flags);
+        PlotStemsEx(label_id, getter_mark, get_base, flags);
     }
     else {
-        GetterXY<IndexerLin,IndexerIdx<T>> get_mark(IndexerLin(scale,start),IndexerIdx<T>(values,count,offset,stride),count);
+        GetterXY<IndexerLin,IndexerIdx<T>> getter_mark(IndexerLin(scale,start),IndexerIdx<T>(values,count,offset,stride),count);
         GetterXY<IndexerLin,IndexerConst>  get_base(IndexerLin(scale,start),IndexerConst(ref),count);
-        PlotStemsEx(label_id, get_mark, get_base, flags);
+        PlotStemsEx(label_id, getter_mark, get_base, flags);
     }
 }
 
 template <typename T>
 void PlotStems(const char* label_id, const T* xs, const T* ys, int count, double ref, ImPlotStemsFlags flags, int offset, int stride) {
     if (ImHasFlag(flags, ImPlotStemsFlags_Horizontal)) {
-        GetterXY<IndexerIdx<T>,IndexerIdx<T>> get_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
+        GetterXY<IndexerIdx<T>,IndexerIdx<T>> getter_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerConst,IndexerIdx<T>>  get_base(IndexerConst(ref),IndexerIdx<T>(ys,count,offset,stride),count);
-        PlotStemsEx(label_id, get_mark, get_base, flags);
+        PlotStemsEx(label_id, getter_mark, get_base, flags);
     }
     else {
-        GetterXY<IndexerIdx<T>,IndexerIdx<T>> get_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
+        GetterXY<IndexerIdx<T>,IndexerIdx<T>> getter_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerIdx<T>,IndexerConst>  get_base(IndexerIdx<T>(xs,count,offset,stride),IndexerConst(ref),count);
-        PlotStemsEx(label_id, get_mark, get_base, flags);
+        PlotStemsEx(label_id, getter_mark, get_base, flags);
     }
 }
 
