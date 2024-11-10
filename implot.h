@@ -46,6 +46,7 @@
 
 #pragma once
 #include "imgui.h"
+#ifndef IMGUI_DISABLE
 
 //-----------------------------------------------------------------------------
 // [SECTION] Macros and Defines
@@ -1752,4 +1753,5 @@ IMPLOT_DEPRECATED(IMPLOT_API bool BeginPlot(
 
 } // namespace ImPlot
 
-#endif
+#endif // #ifndef IMPLOT_DISABLE_OBSOLETE_FUNCTIONS
+#endif // #ifndef IMGUI_DISABLE
